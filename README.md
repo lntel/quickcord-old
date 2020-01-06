@@ -6,7 +6,7 @@ Quickcord is a discord.js wrapper which allows you to easily and swiftly create 
 `npm i quickcord --save`
 
 Once installed using npm you can do the following:
-```
+```js
 const Quickcord = require('quickcord');
 
 const command = new Quickcord.CommandHandler('bot token', 'command prefix');

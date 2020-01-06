@@ -1,0 +1,21 @@
+{
+  "name": "quickcord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index",
+  "scripts": {
+    "dev": "nodemon .",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

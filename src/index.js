@@ -1,6 +1,6 @@
 'use strict';
 
 module.exports = {
-    CommandHandler: require('./command'),
+    Client: require('./Base'),
     Embed: require('./embed')
 };

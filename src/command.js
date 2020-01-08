@@ -4,7 +4,7 @@ const EventEmitter = require('events');
 const Discord = require('discord.js');
 
 class CommandHandler extends EventEmitter {
-    constructor(token, prefix) {
+    constructor(token, prefix = '.') {
         super();
 
         this._client = new Discord.Client();

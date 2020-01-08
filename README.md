@@ -5,8 +5,6 @@ Quickcord is a discord.js wrapper which allows you to easily and swiftly create 
 
 `npm i quickcord --save`
 
-Once installed using npm you can do the following:
-
 # Getting Started
 
 To get started, firstly require the Quickcord library and then you can create a new instance of the Quickcord client. Within the constructor, the first parameter is your bot token which you can find here: https://discordapp.com/developers/applications/ and the second parameter is your command prefix which is the character which you want to have infront of all of your commands, for example: `.help`.

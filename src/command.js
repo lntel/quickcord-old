@@ -4,8 +4,10 @@ const EventEmitter = require('events');
 const Discord = require('discord.js');
 
 class CommandHandler extends EventEmitter {
-    constructor(token, prefix = '.') {
+    constructor(token, prefix = ['.']) {
         super();
+
+        this._reservedEvents = ['loaded'];
 
         this._client = new Discord.Client();
         this._client.login(token)
@@ -19,10 +21,16 @@ class CommandHandler extends EventEmitter {
         this._client.on('message', response => {
             const { content } = response;
 
-            if(!content.startsWith(prefix) || response.author.bot) return;
+            const prefixResult = prefix.find(current => current == content[0]);
 
-            const args = response.content.slice(prefix.length).split(' ');
+            if(prefixResult === undefined || response.author.bot) return;
+
+            const args = response.content.slice(prefixResult.length).split(' ');
             const command = args.shift().toLowerCase();
+
+            const eventCheck = this._reservedEvents.find(event => command == event);
+
+            if(eventCheck !== undefined) return;
 
             this.emit(command, response, args);
         });

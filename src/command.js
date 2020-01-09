@@ -21,7 +21,13 @@ class CommandHandler extends EventEmitter {
         this._client.on('message', response => {
             const { content } = response;
 
-            const prefixResult = prefix.find(current => current == content[0]);
+            let prefixResult;
+
+            if(typeof prefix === 'object') {
+                prefixResult = prefix.find(current => current == content[0]);
+            } else {
+                prefixResult = prefix;
+            }
 
             if(prefixResult === undefined || response.author.bot) return;
 

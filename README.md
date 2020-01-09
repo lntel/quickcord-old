@@ -9,10 +9,12 @@ Quickcord is a discord.js wrapper which allows you to easily and swiftly create 
 
 To get started, firstly require the Quickcord library and then you can create a new instance of the Quickcord client. Within the constructor, the first parameter is your bot token which you can find here: https://discordapp.com/developers/applications/ and the second parameter is your command prefix which is the character which you want to have infront of all of your commands, for example: `.help`.
 
+Furthermore, you can also provide an array of characters to your command prefix so you could for example use both, `.` and `+` or whatever character you have chosen. If you do not provide a prefix or an array, the prefix will be set to `.` by default.
+
 ```js
 const Quickcord = require('quickcord');
 
-const command = new Quickcord.Client('token', 'prefix');
+const command = new Quickcord.Client('token', ['.']);
 
 command.on('loaded', console.log);
 
@@ -28,6 +30,19 @@ command.on('help', (res, args) => {
 
     res.reply(embed);
 });
+```
+
+## Reserved Events
+Reserved events within Quickcord are events which cannot be used as commands as they already serve a purpose within the functionality of Quickcord. These events are listed below coupled with their purpose.
+
+### Loaded
+The loaded event simple checks whether your bot could successfully connect to the Discord API. Within the callback for this method there is a message stating the connection was successful otherwise an error will be thrown.
+
+#### Usage
+```js
+command.on('loaded', message => {
+    console.log(message);
+})
 ```
 
 # Embeds

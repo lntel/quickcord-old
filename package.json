@@ -13,7 +13,6 @@
   "scripts": {
     "dev": "nodemon .",
     "test": "node src/index.test.js",
-    "prepublish": "npm test",
     "build": "webpack"
   },
   "author": "",

@@ -13,10 +13,6 @@ quickcord.on('loaded', message => {
     }
 });
 
-console.log("Test 1 -> passed");
-
-console.log("Test 2 -> started");
-
 const embed = new Quickcord.Embed({
     title: 'test',
     description: 'testing'
@@ -27,3 +23,7 @@ if(embed === undefined) {
 }
 
 console.log("Test 2 -> passed")
+
+quickcord._client.destroy();
+
+return;

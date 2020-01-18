@@ -32,6 +32,42 @@ command.on('help', (res, args) => {
 });
 ```
 
+# Command Handling
+Quickcord has two different ways to handle commands, the first way which has been within Quickcord from the beginning is using the `.on()` method to listen to a specific command however, with version 2.4.8 it is now possible to load all your commands from a directory. 
+
+The command loader previously had a memory leak however, since `2.4.9` this has been fixed.
+
+## Standard Command Definition
+Below is the standard method used to define commands.
+```js
+command.on('ping', (res, args) => {
+    res.reply('pong');
+});
+```
+## Command Loader
+And here is the new command loader which can now be used.
+```js
+command.loadCommands('./commands', files => {
+    files.map(file => console.log(`${file.name} Loaded`));
+});
+```
+This command loader has a callback which contains an array of objects consisting of commands that were successfully loaded. The object is structured as such: 
+```json
+{
+    name: "commandnamehere"
+}
+```
+With the command handler however, each command file must be formatted like so:
+```js
+module.exports = {
+    name: "ping",
+    call: (res, args) => {
+        res.reply("pong");
+    };
+};
+```
+I suggest personally, that you create a directory specifically for commands as this has shown to be quite effective and efficient.
+
 ## Reserved Events
 Reserved events within Quickcord are events which cannot be used as commands as they already serve a purpose within the functionality of Quickcord. These events are listed below coupled with their purpose.
 

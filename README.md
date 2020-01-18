@@ -19,7 +19,7 @@ const command = new Quickcord.Client('token', ['.']);
 command.on('loaded', console.log);
 
 command.on('help', (res, args) => {
-    const embed = new Quickcord.Embed({
+    const embed = Quickcord.Embed({
         title: 'test',
         description: 'testing this',
         color: '#1AC588',

@@ -14,6 +14,8 @@ class CommandHandler {
         // Define reserved event listeners
         this._reservedEvents = ["loaded"];
 
+        this.logging = false;
+
         // Connect to discord using provided token
         this._client = new Discord.Client();
         this._client
@@ -76,6 +78,17 @@ class CommandHandler {
                 if (command !== trigger) return;
             } else if (typeof trigger === "object") {
                 if (trigger.find(value => value == command) === undefined) return;
+            }
+
+            // Log command if logging is enabled
+            if(this.logging) {
+
+                const { tag } = response.member.user;
+
+                console.log('\x1b[36m%s: \x1b[0m%s', 'Command', `${command}`);
+                console.log('\x1b[36m%s: \x1b[0m%s', 'User', `${tag}`);
+                console.log('\x1b[36m%s: \x1b[0m%s', 'Arguments', `${args}`);
+                console.log('\x1b[36m%s: \x1b[0m%s', 'Time', `${Date.now()}\r\n`);
             }
 
             // Check if expected amount of arguments have been provided

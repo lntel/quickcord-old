@@ -38,56 +38,64 @@ Quickcord has two different ways to handle commands, the first way which has bee
 The command loader previously had a memory leak however, since `2.4.9` this has been fixed.
 
 ## Standard Command Definition
-Below is the standard method used to define commands.
+Below is the standard method used to define commands. As of version `4.5.9` you are now able to provide an array of aliases opposed to just a single command. Both an example of using a single command and an array of aliases are shown in the example below.
 ```js
+// Single command alias
 command.on('ping', (res, args) => {
     res.reply('pong');
 });
+
+// Multiple command aliases
+command.on(['hey', 'hi'], (res, args) => {
+    res.reply('Hello world');
+});
 ```
 ## Command Loader
-And here is the new command loader which can now be used.
+The command loader simply loads all `.js` files within the provided directory and loads all of them automatically into the command handler for ease-of-use.
 ```js
 command.loadCommands('./commands', files => {
     files.map(file => console.log(`${file.name} Loaded`));
 });
 ```
-This command loader has a callback which contains an array of objects consisting of commands that were successfully loaded. The object is structured as such: 
-```json
-{
-    name: "commandnamehere"
-}
-```
-With the command handler however, each command file must be formatted like so:
+Each file which is loaded by the command loaded should be structured as is shown in the example below. As of `4.5.9` there is also now a disabled key which can be used to either disabled commands which have bugs or are still within development. Additionally, the `name` key may now also be an array of aliases however, it may also simply be a single string which represents a command trigger.
 ```js
+// Basic command
 module.exports = {
     name: "ping",
     call: (res, args) => {
         res.reply("pong");
-    };
+    }
+};
+
+// Disabled command
+module.exports = {
+    name: "ping",
+    disabled: true,
+    call: (res, args) => {
+        res.reply("pong");
+    }
+};
+
+// Command with multiple aliases
+module.exports = {
+    name: ['ping', 'pong'],
+    call: (res, args) => {
+        res.reply("pong");
+    }
 };
 ```
 I suggest personally, that you create a directory specifically for commands as this has shown to be quite effective and efficient.
 
 ## Reserved Events
-Reserved events within Quickcord are events which cannot be used as commands as they already serve a purpose within the functionality of Quickcord. These events are listed below coupled with their purpose.
-
-### Loaded
-The loaded event simple checks whether your bot could successfully connect to the Discord API. Within the callback for this method there is a message stating the connection was successful otherwise an error will be thrown.
-
-#### Usage
-```js
-command.on('loaded', message => {
-    console.log(message);
-})
-```
+As of version `4.5.9` reserved commands are deprecated. In future these will exist again however, currently, they are not feasible as Quickcord is no longer using an EventEmitter.
 
 # Embeds
-The original way of creating embeds within Discord.js is quite ugly so in Quickcord I have tidied this up by using an object as a parameter with all of the embed properties defined within.
+The original way of creating embeds within Discord.js is quite ugly so in Quickcord I have tidied this up by using an object as a parameter with all of the embed properties defined within. As of `4.5.9` the Quickcord embed is no longer a class therefore, does not require `new` to instantiate it.
 
 Example:
 ```js
 const Quickcord = require('quickcord');
-const embed = new Quickcord.Embed({
+const embed = Quickcord.Embed({
     title: 'test',
     description: 'testing this',
         color: '#1AC588',

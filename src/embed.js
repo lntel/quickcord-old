@@ -18,6 +18,7 @@ module.exports = (options = {}) => {
     if(options.fields) insertFields(options.fields);
     if(options.image) Embed.setImage(options.image);
     if(options.footer) Embed.setFooter(options.footer);
+    if(options.thumbnail) Embed.setThumbnail(options.thumbnail);
 
     return Embed;
 };

@@ -1,6 +1,6 @@
 {
   "name": "quickcord",
-  "version": "2.4.8",
+  "version": "2.4.9",
   "description": "Quickcord is a discord.js wrapper which allows you to easily and swiftly create commands for your discord bot without all of the setup normally required.",
   "main": "./src/index",
   "keywords": [

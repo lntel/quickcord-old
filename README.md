@@ -1,3 +1,5 @@
+# THIS REPOSITORY IS DEPRECATED. Please use [Quickcord](https://github.com/lntel/quickcord) instead.
+
 # About
 Quickcord is a discord.js wrapper which allows you to easily and swiftly create commands for your discord bot without all of the setup normally required.
 
